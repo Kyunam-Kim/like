@@ -7,3 +7,7 @@ def home(request):
 
 def about(request):
     return render(request, 'wordcount/about.html')
+
+def result(request):
+    text = request.GET['fulltext']
+    return render(request, 'wordcount/result.html', {'full':text})
