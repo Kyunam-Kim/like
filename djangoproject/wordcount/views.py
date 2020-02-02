@@ -10,4 +10,13 @@ def about(request):
 
 def result(request):
     text = request.GET['fulltext']
-    return render(request, 'wordcount/result.html', {'full':text})
+    words = text.split()
+    word_dictionary = {}
+    for word in words:
+        if word in word_dictionary:
+            #increase
+            word_dictionary[word] += 1
+        else:
+            # add
+            word_dictionary[word] = 1
+    return render(request, 'wordcount/result.html', {'full':text, 'total' : len(words), 'dictionary' : word_dictionary.items()})
